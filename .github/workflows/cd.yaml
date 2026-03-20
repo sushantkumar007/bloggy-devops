@@ -59,7 +59,7 @@ jobs:
             set -e
             cd ~/bloggy
 
-            # pull compose file using git
+            # pull compose file form docker hub using git
             git fetch origin main
             git checkout origin/main
 
