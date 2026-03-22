@@ -31,7 +31,7 @@ services:
     secrets:
       - db_password
   blog-server:
-    image: sushantkumar007/blog-app:build-6507fe395b1de5059229ef66175f77325a9769bb
+    image: sushantkumar007/blog-app:build-a06abe18af59c61e54031783cdbb97f8b045211c
     deploy:
       replicas: 1
       update_config:
