@@ -1,4 +1,5 @@
 services:
+  
   blog-db:
     image: mysql
     deploy:
@@ -30,6 +31,7 @@ services:
       - blog-app-net
     secrets:
       - db_password
+  
   blog-server:
     image: sushantkumar007/blog-app:build-104d12948ec1adf53eed9a968187959551868909
     deploy:
@@ -65,8 +67,34 @@ services:
     secrets:
       - db_username
       - db_password
+  
+  caddy:
+    image: 'caddy:2-alpine'
+    deploy:
+      replicas: 1
+      update_config:
+        order: start-first
+        failure_action: rollback
+        delay: 10s
+      rollback_config:
+        parallelism: 1
+        order: start-first
+      ports:
+        - '80:80'
+        - '443:443'
+      volumes:
+        - caddy_data:/data  
+        - caddy_config:/config
+      networks:
+        - blog-app-net  
+      config:
+        - source: Caddyfile
+        - target: /etc/caddy/Caddyfile        
+
 volumes:
   blog-db-vol: null
+  caddy_data: null
+  caddy_config: null
 networks:
   blog-app-net: null
 secrets:
@@ -74,3 +102,6 @@ secrets:
     external: true
   db_username:
     external: true
+configs:
+  Caddyfile:
+    file: ./Caddyfile

@@ -1,0 +1,7 @@
+{
+  email: sushantkumar@gmail.com
+}
+
+algodocket.com {
+  reverse_proxy: blog-server:3000
+}
