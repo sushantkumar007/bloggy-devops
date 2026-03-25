@@ -75,5 +75,5 @@ jobs:
             git checkout origin/main
 
             docker pull ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-            docker config rm bloggy_Caddyfile || true
+            # docker config rm bloggy_Caddyfile || true
             docker stack deploy -c compose.yaml bloggy
