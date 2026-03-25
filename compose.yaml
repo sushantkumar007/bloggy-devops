@@ -1,5 +1,4 @@
 services:
-  
   blog-db:
     image: mysql
     deploy:
@@ -31,9 +30,8 @@ services:
       - blog-app-net
     secrets:
       - db_password
-  
   blog-server:
-    image: sushantkumar007/blog-app:build-104d12948ec1adf53eed9a968187959551868909
+    image: sushantkumar007/blog-app:build-be7aff57d3c178ed948ee2654d382f5c25548866
     deploy:
       replicas: 1
       update_config:
@@ -67,9 +65,8 @@ services:
     secrets:
       - db_username
       - db_password
-  
   caddy:
-    image: 'caddy:2-alpine'
+    image: caddy:2-alpine
     deploy:
       replicas: 1
       update_config:
@@ -83,14 +80,13 @@ services:
         - '80:80'
         - '443:443'
       volumes:
-        - caddy_data:/data  
+        - caddy_data:/data
         - caddy_config:/config
       networks:
-        - blog-app-net  
+        - blog-app-net
       config:
         - source: Caddyfile
-        - target: /etc/caddy/Caddyfile        
-
+        - target: /etc/caddy/Caddyfile
 volumes:
   blog-db-vol: null
   caddy_data: null
