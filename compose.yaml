@@ -84,7 +84,7 @@ services:
       - caddy_config:/config
     networks:
       - blog-app-net
-    config:
+    configs:
       - source: Caddyfile
       - target: /etc/caddy/Caddyfile
 volumes:
