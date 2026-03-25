@@ -80,16 +80,16 @@ services:
         parallelism: 1
         order: start-first
     ports:
-        - '80:80'
-        - '443:443'
+      - '80:80'
+      - '443:443'
     volumes:
-        - caddy_data:/data
-        - caddy_config:/config
+      - caddy_data:/data
+      - caddy_config:/config
     networks:
-        - blog-app-net
-    config:
-        - source: Caddyfile
-        - target: /etc/caddy/Caddyfile
+      - blog-app-net
+    configs:
+      - source: Caddyfile
+      - target: /etc/caddy/Caddyfile
 
 volumes:
   blog-db-vol: null
